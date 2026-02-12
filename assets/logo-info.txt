@@ -1,0 +1,2 @@
+/* Logo wird als SVG in HTML eingebettet oder als Bild-Datei geladen */
+/* Das Logo wird im Header verwendet */

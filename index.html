@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildUp Media - Performance Marketing Agentur</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #0b0d10;
+      color: white;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(21, 32, 58, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(15, 58, 42, 0.4) 0%, transparent 50%);
+      animation: gradientMove 20s ease infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    @keyframes gradientMove {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-10%, 10%); }
+    }
+    
+    body::after {
+      content: '';
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1000px;
+      height: 1000px;
+      background: url('https://i.ibb.co/xqzjbXk7/Group-5.png') center/contain no-repeat;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    header {
+      position: relative;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(11, 13, 16, 0.7);
+      backdrop-filter: blur(20px);
+      margin: 20px 5%;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .logo img {
+      height: 60px;
+      filter: drop-shadow(0 0 20px rgba(127, 255, 193, 0.3));
+    }
+    
+    nav {
+      display: flex;
+      gap: 40px;
+    }
+    
+    nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: #7cffc1;
+    }
+    
+    /* Scrolling Bewertungs-Leiste */
+    .reviews-ticker {
+      position: relative;
+      z-index: 50;
+      width: 100%;
+      overflow: hidden;
+      background: rgba(11, 13, 16, 0.7);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(127, 255, 193, 0.2);
+      border-bottom: 1px solid rgba(127, 255, 193, 0.2);
+      padding: 16px 0;
+      margin: 0 0 40px 0;
+    }
+    
+    .reviews-track {
+      display: flex;
+      gap: 32px;
+      animation: scroll 40s linear infinite;
+      width: fit-content;
+    }
+    
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    .review-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(127, 255, 193, 0.2);
+      white-space: nowrap;
+      min-width: 300px;
+    }
+    
+    .review-item .stars {
+      color: #fbbf24;
+      font-size: 16px;
+    }
+    
+    .review-item .name {
+      font-weight: 700;
+      color: #7cffc1;
+    }
+    
+    .review-item .text {
+      color: #a0a6b1;
+      font-size: 14px;
+    }
+    
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 40px 5% 80px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: start;
+    }
+    
+    .hero-content {
+      background: rgba(11, 13, 16, 0.6);
+      backdrop-filter: blur(20px);
+      padding: 60px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }    
+    .contact-buttons {
+      padding-top: 0;
+      margin-top: 0;
+    }
+    
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, white, #d1d5db);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .sub {
+      font-size: 18px;
+      color: #a0a6b1;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    
+    .cta {
+      display: inline-block;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #4f8cff, #7cffc1);
+      color: #0b0d10;
+      font-weight: 700;
+      font-size: 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      margin-right: 16px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(79, 140, 255, 0.3);
+    }
+    
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(79, 140, 255, 0.5);
+    }
+    
+    .cta.secondary {
+      background: transparent;
+      border: 2px solid rgba(127, 255, 193, 0.3);
+      color: white;
+    }
+    
+    .cta.secondary:hover {
+      background: rgba(127, 255, 193, 0.1);
+      border-color: rgba(127, 255, 193, 0.6);
+    }
+    
+    .stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 40px;
+    }
+    
+    .stat {
+      flex: 1;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .stat strong {
+      display: block;
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7cffc1, #4f8cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+    
+    .stat .muted {
+      font-size: 14px;
+      color: #8b92a0;
+    }
+    
+    .contact-buttons {
+      background: rgba(11, 13, 16, 0.6);
+      backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+    
+    .contact-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .contact-btn:hover {
+      transform: translateX(8px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 80px 5%;
+    }
+    
+    .section-container {
+      background: rgba(11, 13, 16, 0.6);
+      backdrop-filter: blur(20px);
+      padding: 60px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+    
+    h2 {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+    
+    .section-intro {
+      font-size: 18px;
+      color: #a0a6b1;
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    
+    .card {
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(127, 255, 193, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: #7cffc1;
+    }
+    
+    .card p {
+      color: #a0a6b1;
+      line-height: 1.7;
+    }
+    
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 40px 5%;
+      margin: 40px 5% 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      color: #8b92a0;
+      background: rgba(11, 13, 16, 0.6);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      h1 {
+        font-size: 36px;
+      }
+      
+      nav {
+        display: none;
+      }
+      
+      .hero-content, .contact-buttons, .section-container {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="https://i.ibb.co/xqzjbXk7/Group-5.png" alt="BuildUp Media">
+  </div>
+  <nav>
+    <a href="#bewertungen">Bewertungen</a>
+    <a href="#leistungen">Leistungen</a>
+    <a href="#design">Design</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Agentur, die verdient, wenn dein Umsatz wächst.</h1>
+    <p class="sub">Performance-Marketing mit Ergebnisbindung. Fixe Basis. Variable am Erfolg.</p>
+    
+    <p style="font-size:16px;line-height:1.7;color:#d1d5db;margin:0 0 32px 0">
+      Wir entwickeln <strong style="color:#7cffc1">digitale Systeme</strong>, die messbar Umsatz generieren. Von <strong style="color:#4f8cff">Performance Ads</strong> bis zu automatisierten Kundenprozessen – alles auf Erfolgsbasis. Dein Vorteil: Du zahlst nur, wenn du wächst.
+    </p>
+    
+    <a class="cta" href="#kontakt">Umsatz-Analyse anfordern</a>
+    <a class="cta secondary" href="#bewertungen">Bewertungen ansehen</a>
+    
+    <div class="stats">
+      <div class="stat">
+        <strong>+42%</strong>
+        <span class="muted">Ø Umsatzwachstum</span>
+      </div>
+      <div class="stat">
+        <strong>90 Tage</strong>
+        <span class="muted">Ergebnisse sichtbar</span>
+      </div>
+      <div class="stat">
+        <strong>100%</strong>
+        <span class="muted">Erfolgsbasiert</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="contact-buttons">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <!-- WhatsApp -->
+      <a href="https://wa.me/436608256468" target="_blank" class="contact-btn" style="position:relative;background:rgba(37,211,102,0.04);backdrop-filter:blur(15px);border:1px solid rgba(37,211,102,0.2);color:white;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:12px;overflow:hidden">
+        <div style="width:36px;height:36px;background:linear-gradient(135deg,#25D366,#128C7E);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(37,211,102,0.3);flex-shrink:0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">WhatsApp</div>
+          <div style="font-size:11px;color:#a0a6b1;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Direkt chatten</div>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style="opacity:0.5;flex-shrink:0">
+          <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      
+      <!-- Email -->
+      <a href="mailto:BuildUpMedia2026@gmail.com" class="contact-btn" style="position:relative;background:rgba(234,67,53,0.04);backdrop-filter:blur(15px);border:1px solid rgba(234,67,53,0.2);color:white;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:12px;overflow:hidden">
+        <div style="width:36px;height:36px;background:#000000;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(234,67,53,0.3);padding:8px;flex-shrink:0">
+          <svg viewBox="0 0 24 24" fill="white" style="width:100%;height:100%">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">E-Mail</div>
+          <div style="font-size:11px;color:#a0a6b1;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">BuildUpMedia2026@gmail.com</div>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style="opacity:0.5;flex-shrink:0">
+          <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      
+      <!-- Phone -->
+      <a href="tel:+436608256468" class="contact-btn" style="position:relative;background:rgba(79,140,255,0.04);backdrop-filter:blur(15px);border:1px solid rgba(79,140,255,0.2);color:white;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:12px;overflow:hidden">
+        <div style="width:36px;height:36px;background:#000000;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.5);padding:7px;flex-shrink:0">
+          <svg viewBox="0 0 24 24" fill="white" style="width:100%;height:100%">
+            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Anrufen</div>
+          <div style="font-size:11px;color:#a0a6b1;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">+43 660 825 6468</div>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style="opacity:0.5;flex-shrink:0">
+          <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/buildupmedia2026/" target="_blank" class="contact-btn" style="position:relative;background:rgba(225,48,108,0.04);backdrop-filter:blur(15px);border:1px solid rgba(225,48,108,0.2);color:white;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:12px;overflow:hidden">
+        <div style="width:36px;height:36px;background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(225,48,108,0.3);padding:6px;flex-shrink:0">
+          <svg viewBox="0 0 24 24" fill="white" style="width:100%;height:100%">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Instagram</div>
+          <div style="font-size:11px;color:#a0a6b1;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">@buildupmedia2026</div>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style="opacity:0.5;flex-shrink:0">
+          <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@buildupmedia?is_from_webapp=1&sender_device=pc" target="_blank" class="contact-btn" style="position:relative;background:rgba(238,29,82,0.04);backdrop-filter:blur(15px);border:1px solid rgba(238,29,82,0.2);color:white;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:12px;overflow:hidden">
+        <div style="width:36px;height:36px;background:#000000;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(238,29,82,0.3);padding:5px;flex-shrink:0">
+          <svg viewBox="0 0 24 24" style="width:100%;height:100%">
+            <path fill="#25F4EE" d="M9.37 16.58c-.39.04-.78.06-1.18.06-3.01 0-5.45-2.44-5.45-5.45 0-3.01 2.44-5.45 5.45-5.45.39 0 .78.03 1.16.09v3.03c-.37-.05-.75-.08-1.13-.08-1.49 0-2.7 1.21-2.7 2.7 0 1.49 1.21 2.7 2.7 2.7.39 0 .76-.08 1.11-.23v2.63h.04z"/>
+            <path fill="#FE2C55" d="M20.84 8.28v2.83c-1.83 0-3.53-.59-4.91-1.59v7.29c0 3.64-2.95 6.59-6.59 6.59-1.38 0-2.66-.42-3.72-1.14 1.14 1.42 2.9 2.33 4.87 2.33 3.64 0 6.59-2.95 6.59-6.59v-7.29c1.39 1 3.08 1.59 4.91 1.59v-4.02h-1.15z"/>
+            <path fill="#FE2C55" d="M19.69 8.28c-1.42 0-2.67-.73-3.39-1.83.78 1.1 2.03 1.83 3.54 1.83v-2.83c.62-.13 1.19-.38 1.69-.73-.5.98-1.26 1.78-2.18 2.31v2.25h.34z"/>
+            <path fill="white" d="M9.34 11.19c-1.49 0-2.7 1.21-2.7 2.7 0 1.49 1.21 2.7 2.7 2.7.39 0 .76-.08 1.11-.23v-2.82c-.35-.24-.78-.38-1.24-.38-.08 0-.16 0-.24.01v-.98h.37zm10.35-5.74c-.97-1.01-1.58-2.38-1.58-3.9h-1.24c.13 1.16.66 2.19 1.44 2.97.78-.78 1.76-1.31 2.87-1.44v1.24c-.5.98-1.26 1.78-2.18 2.31-.5-.35-1.08-.6-1.69-.73v2.83c1.83 0 3.53-.59 4.91-1.59v-2.83c-.62.35-1.32.55-2.06.55-.52 0-1.01-.14-1.47-.41z"/>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">TikTok</div>
+          <div style="font-size:11px;color:#a0a6b1;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">@buildupmedia</div>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style="opacity:0.5;flex-shrink:0">
+          <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Scrolling Bewertungs-Leiste -->
+<div class="reviews-ticker">
+  <div class="reviews-track">
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Sarah M.</span>
+      <span class="text">+127% Umsatz in 90 Tagen</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Thomas W.</span>
+      <span class="text">3.200 qualifizierte Leads</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Lisa S.</span>
+      <span class="text">€42.000 mehr pro Monat</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Michael B.</span>
+      <span class="text">ROI von 420%</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Anna K.</span>
+      <span class="text">Conversion Rate verdoppelt</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">David H.</span>
+      <span class="text">20h Zeit gespart pro Woche</span>
+    </div>
+    <!-- Duplicate für seamless loop -->
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Sarah M.</span>
+      <span class="text">+127% Umsatz in 90 Tagen</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Thomas W.</span>
+      <span class="text">3.200 qualifizierte Leads</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Lisa S.</span>
+      <span class="text">€42.000 mehr pro Monat</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Michael B.</span>
+      <span class="text">ROI von 420%</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">Anna K.</span>
+      <span class="text">Conversion Rate verdoppelt</span>
+    </div>
+    <div class="review-item">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="name">David H.</span>
+      <span class="text">20h Zeit gespart pro Woche</span>
+    </div>
+  </div>
+</div>
+
+
+<section id="leistungen">
+  <div class="section-container">
+    <h2>🚀 Was wir liefern</h2>
+    <p class="section-intro">
+      Performance Marketing. Webentwicklung. Content. Alles aus einer Hand.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>Performance Ads</h3>
+        <p>Meta, Google, TikTok, LinkedIn. Optimiert auf Conversion, nicht auf Reichweite.</p>
+      </div>
+      <div class="card">
+        <h3>Websites & Funnels</h3>
+        <p>Landing Pages, Buchungssysteme, Onlineshops. Schnell, skalierbar, conversion-optimiert.</p>
+      </div>
+      <div class="card">
+        <h3>Content Creation</h3>
+        <p>Videos, Design, Copy. Markenaufbau mit System.</p>
+      </div>
+      <div class="card">
+        <h3>KI-Automatisierung</h3>
+        <p>Chatbots, E-Mail-Flows, Kundensupport. Weniger Arbeit, mehr Output.</p>
+      </div>
+      <div class="card">
+        <h3>Social Media Management</h3>
+        <p>Strategie, Planung, Posting. Authentisch, relevant, performant.</p>
+      </div>
+      <div class="card">
+        <h3>Consulting & Strategie</h3>
+        <p>Klare Roadmaps. Keine Buzzwords.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="design">
+  <div class="section-container">
+    <h2>🎨 Design & Branding</h2>
+    <p class="section-intro">
+      Professionelle Designs, die deine Marke zum Leben erwecken.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>Logo Design</h3>
+        <p>Einzigartige Logos, die deine Marke perfekt repräsentieren. Modern, zeitlos und wiedererkennbar.</p>
+      </div>
+      <div class="card">
+        <h3>Visitenkarten</h3>
+        <p>Hochwertige Visitenkarten im individuellen Design. Hinterlasse einen bleibenden Eindruck.</p>
+      </div>
+      <div class="card">
+        <h3>Wunschkarten</h3>
+        <p>Personalisierte Grußkarten für jeden Anlass. Kreativ, einzigartig, unvergesslich.</p>
+      </div>
+      <div class="card">
+        <h3>Corporate Design</h3>
+        <p>Komplette Brand Identity mit Farben, Schriften und Gestaltungsrichtlinien für deinen Auftritt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="section-container">
+    <h2>📞 Lass uns sprechen</h2>
+    <p class="section-intro">
+      Kostenlose Erstanalyse. Kein Sales-Pitch. Nur echte Insights.
+    </p>
+    <div style="max-width:500px">
+      <a href="https://wa.me/436608256468" class="cta" style="display:block;text-align:center;margin-bottom:16px">
+        WhatsApp: +43 660 825 6468
+      </a>
+      <a href="mailto:BuildUpMedia2026@gmail.com" class="cta secondary" style="display:block;text-align:center">
+        E-Mail: BuildUpMedia2026@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 BuildUp Media. Performance Marketing mit Erfolgsbindung.</p>
+  <p style="margin-top:8px;font-size:14px">
+    <a href="https://www.instagram.com/buildupmedia2026/" target="_blank" style="color:#7cffc1;text-decoration:none">Instagram</a> · 
+    <a href="https://www.tiktok.com/@buildupmedia" target="_blank" style="color:#7cffc1;text-decoration:none">TikTok</a>
+  </p>
+</footer>
+
+</body>
+</html>
