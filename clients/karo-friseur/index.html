@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karo's Barbershop — Premium Herrenschnitte & Bartpflege</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #d4af37;
+      --primary-dark: #b8941f;
+      --accent: #c9a35a;
+      --bg: #0a0a0a;
+      --bg-soft: #1a1a1a;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
+      --border: rgba(212,175,55,0.2);
+      --shadow: 0 4px 12px rgba(212,175,55,0.15);
+      --radius: 16px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a { text-decoration: none; color: inherit; }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    
+    /* HEADER */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+    
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: url('logo.png') center/contain no-repeat;
+      border-radius: 0;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 24px;
+      box-shadow: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      font-weight: 500;
+      font-size: 15px;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+      transition: color 0.2s;
+    }
+    
+    .nav-cta {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+      transition: all 0.3s;
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37,99,235,0.35);
+    }
+    
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+      background: #0a0a0a;
+    }
+    
+    .hero-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      animation: infiniteSlide 15s linear infinite;
+      z-index: 0;
+    }
+    
+    .hero-slide {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      border: 2px solid rgba(212,175,55,0.2);
+    }
+    
+    .hero-slide::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(10,10,10,0.6) 0%, rgba(26,26,26,0.5) 50%, rgba(10,10,10,0.6) 100%);
+    }
+    
+    @keyframes infiniteSlide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, 30px); }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 100px 40px;
+    }
+    
+    .badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 24px;
+      background: rgba(212,175,55,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 999px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1.15;
+      margin: 0 0 32px 0;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      color: white;
+    }
+    
+    .hero p {
+      color: rgba(255,255,255,0.95);
+      font-size: 1.3rem;
+      line-height: 1.8;
+      margin: 0 auto 48px;
+      max-width: 700px;
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+    }
+    
+    .btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #0a0a0a;
+      box-shadow: 0 8px 24px rgba(212,175,55,0.3);
+    }
+    
+    .btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(212,175,55,0.4);
+    }
+    
+    .btn.secondary {
+      background: rgba(212,175,55,0.15);
+      backdrop-filter: blur(10px);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn.secondary:hover {
+      background: rgba(212,175,55,0.25);
+      border-color: var(--primary);
+    }
+    
+    /* SECTIONS */
+    section {
+      padding: 120px 0;
+    }
+    
+    .section-head {
+      text-align: center;
+      margin-bottom: 80px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .section-head span {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+    
+    .section-head h2 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      margin: 0 0 20px 0;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+    
+    /* SERVICES GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 36px;
+      transition: all 0.4s;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 24px 48px rgba(212,175,55,0.25);
+      border-color: var(--primary);
+    }
+    
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      box-shadow: 0 12px 32px rgba(37,99,235,0.3);
+      transition: all 0.4s;
+    }
+    
+    .card:hover .card-icon {
+      transform: scale(1.1) rotate(-5deg);
+    }
+    
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    
+    .card p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 20px 0 12px;
+    }
+    
+    /* BOOKING SECTION */
+    .booking-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--bg-soft);
+      padding: 48px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(212,175,55,0.15);
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      transition: all 0.2s;
+      background: var(--bg);
+      color: var(--text);
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(212,175,55,0.2);
+    }
+
+    /* PROFESSIONAL IMAGE GRID SECTION */
+    .image-grid-section {
+      width: 100%;
+      overflow: hidden;
+      background: #000;
+      padding: 0;
+      margin: 120px 0 0 0;
+      border-top: 1px solid rgba(212,175,55,0.3);
+      border-bottom: 1px solid rgba(212,175,55,0.3);
+    }
+
+    .image-grid-row {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 1px solid rgba(212,175,55,0.15);
+    }
+
+    .image-grid-row:last-child {
+      border-bottom: none;
+    }
+
+    .image-grid-track {
+      display: flex;
+      gap: 0;
+      width: fit-content;
+      will-change: transform;
+    }
+
+    .image-grid-track[data-speed="slow"] {
+      animation: slideLeft 60s linear infinite;
+    }
+
+    .image-grid-track[data-speed="medium"] {
+      animation: slideLeft 45s linear infinite;
+    }
+
+    .image-grid-track[data-speed="fast"] {
+      animation: slideLeft 30s linear infinite;
+    }
+
+    .image-grid-track.reverse[data-speed="slow"] {
+      animation: slideRight 60s linear infinite;
+    }
+
+    .image-grid-track.reverse[data-speed="medium"] {
+      animation: slideRight 45s linear infinite;
+    }
+
+    .image-grid-track.reverse[data-speed="fast"] {
+      animation: slideRight 30s linear infinite;
+    }
+
+    .image-grid-track:hover {
+      animation-play-state: paused;
+    }
+
+    .image-grid-item {
+      position: relative;
+      width: 400px;
+      height: 300px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-right: 1px solid rgba(212,175,55,0.3);
+    }
+
+    .image-grid-item:last-child {
+      border-right: none;
+    }
+
+    .image-grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
+      filter: grayscale(30%) brightness(0.85);
+    }
+
+    .image-grid-item:hover img {
+      transform: scale(1.08);
+      filter: grayscale(0%) brightness(1);
+    }
+
+    .image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+      padding: 30px 20px;
+      transform: translateY(100%);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .image-grid-item:hover .image-overlay {
+      transform: translateY(0);
+    }
+
+    .overlay-text {
+      color: #d4af37;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: block;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes slideLeft {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes slideRight {
+      0% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .image-grid-track {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-perspective: 1000px;
+      perspective: 1000px;
+    }
+    
+    /* FOOTER */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 80px 0 32px;
+      margin-top: 0;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 48px;
+    }
+    
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      font-weight: 800;
+      font-size: 20px;
+      color: white;
+    }
+    
+    .footer-brand .logo-icon {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .footer-tagline {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 320px;
+    }
+    
+    .footer-col h4 {
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    .footer-col ul {
+      list-style: none;
+    }
+    
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-col ul li a {
+      color: #94a3b8;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    
+    .footer-col ul li a:hover {
+      color: var(--primary);
+    }
+    
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 14px;
+      color: #64748b;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .container { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+      .grid { grid-template-columns: 1fr; gap: 24px; }
+      .footer-content { grid-template-columns: 1fr; gap: 40px; }
+      .image-grid-item {
+        width: 280px;
+        height: 220px;
+      }
+      .overlay-text {
+        font-size: 14px;
+      }
+      .image-overlay {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<nav>
+  <div class="container navbar">
+    <div class="logo">
+      <div class="logo-icon"></div>
+      Karo's Barbershop
+    </div>
+    <div class="nav-links">
+      <a href="#services">Leistungen</a>
+      <a href="#preise">Preise</a>
+      <a href="#team">Team</a>
+      <a href="#booking">Termin buchen</a>
+    </div>
+    <button class="nav-cta" onclick="location.href='#booking'">Jetzt Termin buchen</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slider">
+    <!-- First set of 6 boxes -->
+    <div class="hero-slide" style="background-image: url('images/img1.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img2.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img3.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img4.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img5.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img1.png')"></div>
+    <!-- Second set (duplicate for infinite loop) -->
+    <div class="hero-slide" style="background-image: url('images/img1.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img2.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img3.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img4.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img5.png')"></div>
+    <div class="hero-slide" style="background-image: url('images/img1.png')"></div>
+  </div>
+  <div class="container hero-content">
+    <div class="badge">💈 Premium Barbershop · Klassische Cuts · Professionelle Bartpflege</div>
+    <h1>Willkommen bei<br><span style="color:var(--primary)">Karo's Barbershop</span></h1>
+    <p>
+      Klassische Herrenschnitte, professionelle Bartpflege und modernes Styling. Tradition trifft auf moderne Handwerkskunst – seit 2018.
+    </p>
+    <div class="hero-actions">
+      <button class="btn primary" onclick="location.href='#booking'">Termin buchen</button>
+      <button class="btn secondary" onclick="location.href='#services'">Unsere Services</button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-head">
+      <span>LEISTUNGEN</span>
+      <h2>Unsere Services</h2>
+      <p>Von klassischen Schnitten bis zu modernen Färbetechniken – wir bieten Ihnen das komplette Spektrum professioneller Haarpflege.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">✂️</div>
+        <h3>Klassischer Herrenschnitt</h3>
+        <p>Zeitlose Schnitte mit Präzision und Stil – von klassisch bis modern.</p>
+        <div class="price">ab 25€</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🪒</div>
+        <h3>Bartpflege & Rasur</h3>
+        <p>Professionelle Barttrimmung, Rasur und Konturierung mit heißem Tuch.</p>
+        <div class="price">ab 20€</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💈</div>
+        <h3>Fade & Undercut</h3>
+        <p>Moderne Fades, Undercuts und Überblendungen – präzise und clean.</p>
+        <div class="price">ab 30€</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">👔</div>
+        <h3>Business Styling</h3>
+        <p>Professionelles Styling für den perfekten Business-Look.</p>
+        <div class="price">ab 35€</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">✨</div>
+        <h3>Premium Package</h3>
+        <p>Komplettservice: Schnitt + Bart + Styling + Kopfmassage.</p>
+        <div class="price">ab 55€</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <h3>Kids Cut</h3>
+        <p>Spezielle Kinderschnitte in entspannter Atmosphäre.</p>
+        <div class="price">ab 18€</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" style="background: var(--bg-soft);">
+  <div class="container">
+    <div class="section-head">
+      <span>TERMIN BUCHEN</span>
+      <h2>Jetzt online buchen</h2>
+      <p>Wählen Sie Ihren Wunschtermin bequem online – schnell, einfach und ohne Wartezeit.</p>
+    </div>
+    <div class="booking-form">
+      <form onsubmit="alert('Terminanfrage erfolgreich! Wir melden uns in Kürze.'); return false;">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" placeholder="Ihr vollständiger Name" required>
+        </div>
+        <div class="form-group">
+          <label>E-Mail</label>
+          <input type="email" placeholder="ihre@email.de" required>
+        </div>
+        <div class="form-group">
+          <label>Telefon</label>
+          <input type="tel" placeholder="+43 xxx xxx xxxx" required>
+        </div>
+        <div class="form-group">
+          <label>Service</label>
+          <select required>
+            <option value="">Bitte wählen</option>
+            <option>Klassischer Herrenschnitt</option>
+            <option>Bartpflege & Rasur</option>
+            <option>Fade & Undercut</option>
+            <option>Business Styling</option>
+            <option>Premium Package</option>
+            <option>Kids Cut</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Wunschtermin</label>
+          <input type="datetime-local" required>
+        </div>
+        <div class="form-group">
+          <label>Anmerkungen (optional)</label>
+          <textarea rows="3" placeholder="Besondere Wünsche oder Fragen..."></textarea>
+        </div>
+        <button class="btn primary" type="submit" style="width: 100%; margin-top: 12px;">Termin anfragen</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSIONAL IMAGE GRID SECTION -->
+<section class="image-grid-section">
+  <!-- Row 1 - Scrolls Left (Slow) -->
+  <div class="image-grid-row">
+    <div class="image-grid-track" data-speed="slow">
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&h=600&fit=crop" alt="Premium Cuts">
+        <div class="image-overlay">
+          <span class="overlay-text">Premium Cuts</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=600&fit=crop" alt="Klassische Bartpflege">
+        <div class="image-overlay">
+          <span class="overlay-text">Klassische Bartpflege</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&h=600&fit=crop" alt="Modernes Styling">
+        <div class="image-overlay">
+          <span class="overlay-text">Modernes Styling</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&h=600&fit=crop" alt="Traditionelles Handwerk">
+        <div class="image-overlay">
+          <span class="overlay-text">Traditionelles Handwerk</span>
+        </div>
+      </div>
+      <!-- Duplicates for seamless loop -->
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&h=600&fit=crop" alt="Premium Cuts">
+        <div class="image-overlay">
+          <span class="overlay-text">Premium Cuts</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=600&fit=crop" alt="Klassische Bartpflege">
+        <div class="image-overlay">
+          <span class="overlay-text">Klassische Bartpflege</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&h=600&fit=crop" alt="Modernes Styling">
+        <div class="image-overlay">
+          <span class="overlay-text">Modernes Styling</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&h=600&fit=crop" alt="Traditionelles Handwerk">
+        <div class="image-overlay">
+          <span class="overlay-text">Traditionelles Handwerk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2 - Scrolls Right (Medium) -->
+  <div class="image-grid-row">
+    <div class="image-grid-track reverse" data-speed="medium">
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=800&h=600&fit=crop" alt="Exklusive Atmosphäre">
+        <div class="image-overlay">
+          <span class="overlay-text">Exklusive Atmosphäre</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&h=600&fit=crop" alt="Professionelle Beratung">
+        <div class="image-overlay">
+          <span class="overlay-text">Professionelle Beratung</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800&h=600&fit=crop" alt="Premium Produkte">
+        <div class="image-overlay">
+          <span class="overlay-text">Premium Produkte</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=800&h=600&fit=crop" alt="Meisterliche Präzision">
+        <div class="image-overlay">
+          <span class="overlay-text">Meisterliche Präzision</span>
+        </div>
+      </div>
+      <!-- Duplicates -->
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=800&h=600&fit=crop" alt="Exklusive Atmosphäre">
+        <div class="image-overlay">
+          <span class="overlay-text">Exklusive Atmosphäre</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&h=600&fit=crop" alt="Professionelle Beratung">
+        <div class="image-overlay">
+          <span class="overlay-text">Professionelle Beratung</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800&h=600&fit=crop" alt="Premium Produkte">
+        <div class="image-overlay">
+          <span class="overlay-text">Premium Produkte</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=800&h=600&fit=crop" alt="Meisterliche Präzision">
+        <div class="image-overlay">
+          <span class="overlay-text">Meisterliche Präzision</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3 - Scrolls Left (Fast) -->
+  <div class="image-grid-row">
+    <div class="image-grid-track" data-speed="fast">
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?w=800&h=600&fit=crop" alt="Trend 2026">
+        <div class="image-overlay">
+          <span class="overlay-text">Trend 2026</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=600&fit=crop" alt="Individuelle Styles">
+        <div class="image-overlay">
+          <span class="overlay-text">Individuelle Styles</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1627393072755-f0b9e921ad2b?w=800&h=600&fit=crop" alt="Perfekte Pflege">
+        <div class="image-overlay">
+          <span class="overlay-text">Perfekte Pflege</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1534438097545-a2c22c57dadd?w=800&h=600&fit=crop" alt="Zeitlose Eleganz">
+        <div class="image-overlay">
+          <span class="overlay-text">Zeitlose Eleganz</span>
+        </div>
+      </div>
+      <!-- Duplicates -->
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?w=800&h=600&fit=crop" alt="Trend 2026">
+        <div class="image-overlay">
+          <span class="overlay-text">Trend 2026</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=600&fit=crop" alt="Individuelle Styles">
+        <div class="image-overlay">
+          <span class="overlay-text">Individuelle Styles</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1627393072755-f0b9e921ad2b?w=800&h=600&fit=crop" alt="Perfekte Pflege">
+        <div class="image-overlay">
+          <span class="overlay-text">Perfekte Pflege</span>
+        </div>
+      </div>
+      <div class="image-grid-item">
+        <img src="https://images.unsplash.com/photo-1534438097545-a2c22c57dadd?w=800&h=600&fit=crop" alt="Zeitlose Eleganz">
+        <div class="image-overlay">
+          <span class="overlay-text">Zeitlose Eleganz</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="logo-icon"></div>
+          Karo's Barbershop
+        </div>
+        <p class="footer-tagline">
+          Klassische Herrenschnitte mit moderner Präzision. Tradition seit 2018.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Herrenschnitt</a></li>
+          <li><a href="#services">Bartpflege</a></li>
+          <li><a href="#services">Fade & Undercut</a></li>
+          <li><a href="#services">Premium Package</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="#booking">Termin buchen</a></li>
+          <li><a href="tel:+43xxx">+43 xxx xxx xxxx</a></li>
+          <li><a href="mailto:info@karo-friseur.at">info@karo-friseur.at</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Datenschutz</a></li>
+          <li><a href="#">AGB</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      © 2026 Karo's Barbershop. Premium Herrenschnitte seit 2018.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
