@@ -2,6 +2,11 @@
 
 BuildUp Media ist eine Performance-Marketing-Agentur mit Ergebnisbindung. Wir entwickeln digitale Systeme, die messbar Umsatz generieren.
 
+## 📚 Dokumentation
+
+- **[Quick Start Guide](QUICKSTART.md)** - Schnellstart für neue Entwickler
+- **[Troubleshooting](TROUBLESHOOTING.md)** - Hilfe bei Problemen mit Copilot, VS Code & Git
+
 ## 🚀 Über uns
 
 - **Performance Marketing** mit Erfolgsbindung
