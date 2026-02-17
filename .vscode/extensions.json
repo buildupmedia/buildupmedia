@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "ritwickdey.liveserver",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "pranaygp.vscode-css-peek",
+    "GitHub.copilot",
+    "GitHub.copilot-chat"
+  ]
+}
